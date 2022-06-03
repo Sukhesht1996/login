@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="Regis.css">
+	<title></title>
+</head>
+<body>
+<div class="container">
+  <form name="custom_form" id="customForm" onsubmit="return FormValidation()" action="valid.html">
+    <div class="form_box">
+   <h2>Registration Form</h2>
+   <div class="input-row">
+  <input type="text" name="name" placeholder="Name*">
+  <span class="error">Please Enter Your Name</span>
+</div>
+
+<div class="input-row">
+  <input type="text" name="email" placeholder="Email*" >
+  <span class="error">Please Enter Your Email</span>
+</div>
+
+<div class="input-row">
+  <input type="text" name="phone" placeholder="Phone*">
+  <span class="error">Please Enter Phone Number</span>
+</div>
+
+<div class="input-row">
+  <select name="subject" >
+    <option value="">Job Role*</option>
+    <option  value="Database">Database administrator</option>
+    <option value="Database">Database analyst</option>
+    <option value="Database">Data quality manager</option>
+     <option value="Database">Database report writer</option>
+     <option value=" development">Back-end developer</option>
+     <option value=" development">Cloud/software developer</option>
+     <option value=" development">Cloud/software applications engineer</option>
+     <option value=" development">DevOps engineer</option>
+     <option value=" development">Front-end developer</option>
+      <option value=" development">Full-stack developer</option>
+       <option value=" development">Java developer</option>
+       <option value=" development">Software engineer</option>
+       <option value=" development">Software quality assurance analyst</option>
+       <option value=" development">Web developer</option>
+       <option value=" development">Reliability engineer</option>
+       <option value=" development">UI (user interface) designer</option>
+       <option value=" manager">Product manager</option>
+       <option value=" manager">Project manager</option>
+       <option value=" manager">Program manager</option>
+       <option value=" manager">Portfolio manager</option>
+  </select>
+  <span class="error">Please Select Job Role</span>
+</div>
+<!--<div class="input-row">
+  <select name="Job" >
+    <option value="">Job Type*</option>
+    <option  value="job1">Part Time</option>
+    <option value="job1">Full Time</option>
+    <option value="job1">Internship</option>
+  </select>
+  <span class="error">Please Select Job Type</span>
+</div>-->
+
+<div class="input-row">
+	<textarea cols="60" rows="7" placeholder="Message" name="message"></textarea>
+  <!--<input placeholder="Message*" name="message">-->
+  <span class="error">Please Enter Message</span>
+</div>
+<input type="file" class="files"  id="file1"accept="application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document" class="input-row" name="file">
+<!--<button onclick="validateFileSize()" class="upload">Upload</button>-->
+
+<input type="submit" value="Submit">
+
+
+</div>
+<script>
+	function FormValidation(){
+//alert("Alert")
+/*var name=document.custom_form.name;*/
+var name1=document.getElementsByName(name)
+let name = name1.item(0).nodeName;
+alert(name)
+var email=document.custom_form.email;
+var phone=document.custom_form.phone;
+var subject=document.custom_form.subject;
+var message=document.custom_form.message;
+var conditions=document.custom_form.conditions;
+
+//Name validation
+if (name.value.match(/[a-zA-Z]+$/) || name.value== "") {
+   name.nextElementSibling.style.display = "block";
+   name.style.border = "1px solid #f00";
+   return false
+}else{
+  name.nextElementSibling.style.display = "none";
+  name.style.border = "1px solid transparent";
+}
+
+//email validation
+if (!email.value.match(/^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/) || email.value == "") {
+   email.nextElementSibling.style.display = "block";
+   email.style.border = "1px solid #f00";
+   return false
+}else{
+  email.nextElementSibling.style.display = "none";
+  email.style.border = "1px solid transparent";
+}
+
+//phone no validation
+if (!phone.value.match( /^\(?([5-9]{1})\)?([0-9]{9})$/) || phone.value == "") {
+   phone.nextElementSibling.style.display = "block";
+   phone.style.border = "1px solid #f00";
+   return false
+}else{
+  phone.nextElementSibling.style.display = "none";
+  phone.style.border = "1px solid transparent";
+}
+
+//subject select box validation
+if (subject.value == "") {
+   subject.nextElementSibling.style.display = "block";
+   subject.style.border = "1px solid #f00";
+   return false
+}else{
+  subject.nextElementSibling.style.display = "none";
+  subject.style.border = "1px solid transparent";
+}
+//job role validation
+if (job.value == "") {
+   job.nextElementSibling.style.display = "block";
+   job.style.border = "1px solid #f00";
+   return false
+}else{
+  job.nextElementSibling.style.display = "none";
+  job.style.border = "1px solid transparent";
+}
+
+//message validation
+if (message.value == "") {
+   message.nextElementSibling.style.display = "block";
+   message.style.border = "1px solid #f00";
+   return false
+}else{
+  message.nextElementSibling.style.display = "none";
+  message.style.border = "1px solid transparent";
+}
+
+
+        var inputElement = document.getElementById('file1');
+        var files = inputElement.files;
+        if(files.length==0){
+            alert("Please choose a file first...");
+            return false;
+        } 
+      
+        var fileSize = files[0].size;
+      
+        /* 1024 = 1MB */
+        var size = Math.round((fileSize / 1024));
+      
+        /* checking for less than or equals to 2MB file size */
+        if (size <= 2*1024) {
+            alert("Valid file size");
+            /* file uploading code goes here... */
+        } else {
+            alert(
+              "Invalid file size, please select a file less than or equal to 2mb size");
+        }
+    }
+
+
+
+
+</script>
+</body>
+</html>
